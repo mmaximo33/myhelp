@@ -1,0 +1,53 @@
+Crear Virtual Host
+
+1-Ubicacion local del VirtualHost
+Crear una carpeta en la raiz C:/ llamada vhost, es aqui donde pondremos todos nuestros proyectos, la ruta quedaría de la siguiente manera C:/vhost  y dentro las subcarpetas de tal forma que quedaria C:/vhost/prueba1  C:/vhost/prueba2 , etc.
+
+
+2-Configuración de windows
+Abrir con un editor de texto el archivo ubicado en la siguiente direccion C:\WINDOWS\system32\drivers\etc\hosts
+En este archivo incorporamos una línea nueva la cual no debe estar comentada (#) y remos lo mismo de la linea 20 pero cambiaremos el dominio que deseamos llamar nuestro virtual host.
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+	127.0.0.1 		mi_prueba1.com
+	127.0.0.1 		mi_prueba2.com
+	127.0.0.1 		mi_prueba3.com
+	127.0.0.1 		mi_prueba4.com
+	127.0.0.1 		mi_prueba5.com
+
+
+3-Configuración del Apache
+Abrir con un editor de texto el archivo llamado httpd.conf, si se está usando XAMPP la ruta es la siguiente C:\xampp\apache\conf\httpd.conf  
+
+Buscar en la seccion de configuracion del Apache y alrededor de la linea 500 deben buscar algo parecido a esto:
+# Virtual hosts
+#Include conf/extra/httpd-vhosts.conf
+
+Lo cual deben quitarle el almohadilla a la segunda linea, quedando de la siguiente manera
+# Virtual hosts
+Include conf/extra/httpd-vhosts.conf
+
+
+4-Abrimos también con un editor de texto el archivo httpd-vhosts.conf el cual si estamos usando Xampp se encuentra en la siguiente ruta C:\xampp\apache\conf\extra\httpd-vhosts.conf
+##<VirtualHost *:80>
+    ##ServerAdmin webmaster@dummy-host2.example.com
+    ##DocumentRoot "C:/xampp/htdocs/dummy-host2.example.com"
+    ##ServerName dummy-host2.example.com
+    ##ErrorLog "logs/dummy-host2.example.com-error.log"
+    ##CustomLog "logs/dummy-host2.example.com-access.log" common
+##</VirtualHost>
+
+Le sacamos las almohadillas y reemplazamos el contenido entre las etiquetas VirtualHost, de tal manera de obtener algo parecido a lo siguiente.
+<VirtualHost *:80>
+    DocumentRoot "C:\vhost\p1\www"
+    ServerName mi_prueba1.com
+    <Directory "C:\vhost">
+        Options Indexes FollowSymLinks Includes ExecCGI
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+
+Guardamos los cambios y reiniciamos el xampp completo.
