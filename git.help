@@ -24,7 +24,8 @@ git commit -m "Primer comentario"							# Comitea los archivos los archivos agre
 git status 													# Indica aquellos archivos untracked 
 git remote add origin https://github.com/USUARIO/RL.git 	# Vincula el RL con RN
 git push -u origin master 									# Sube al RN el RL
-git clone -b origin http://github.com/USUARIO/RL.git 			# Clona el RN en el RL
+git clone http://github.com/USUARIO/RL.git 			# Clona el RN en el RL
+git clone -b origin http://github.com/USUARIO/RL.git 			# Clonar una rama del RN en el RL
 
 
 
