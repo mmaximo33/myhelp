@@ -44,7 +44,8 @@ git push -u origin master
 
 
 ..Clonar repositorios
-git clone origin https://github.com/mmaximo33/p1.git
+git clone https://github.com/mmaximo33/p1.git      ** proyecto git completo
+git clone origin branch https://github.com/mmaximo33/p1.git  ** una rama especifica
 
 
 ..Crear archivos rapidos 
