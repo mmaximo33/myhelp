@@ -1,2 +1,9 @@
 Para buscar las cosas que se pueden instalar por composer
 https://packagist.org/
+
+
+Instalar composer
+https://getcomposer.org/
+$ curl -sS https://getcomposer.org/installer | "C:/xampp/php/php.exe"
+
+php composer.phar install
