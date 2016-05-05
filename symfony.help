@@ -1,0 +1,20 @@
+Desplegar App 
+
+http://stackoverflow.com/questions/8854766/symfony-404-errors?rq=1
+
+
+git clone 
+composer install
+php app/console asset:install
+
+
+rm -rf app/cache/* app/logs/*
+chown www-data:www-data -R app/cache app/logs
+
+php app/console cache:warmup --env=prod --no-debug
+php app/console cache:clear --env=prod --no-debug
+php app/console cache:clear --env=dev --no-debug
+
+
+Intentar en el caso que no funcione nada
+chmod 777 -R app/cache app/logs 

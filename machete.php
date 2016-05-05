@@ -1,37 +1,79 @@
 #####################################################################################################
-CREACION DE BUNDLE
+ADICIONALES
 -----------------------------------------------------------------------------------------------------
-Lo primero que debemos hacer el es crear el directorio 
-de nuestra aplicacion
+php app/console list                                                            Lista de acciones por consola
 
-symfony/src/MyProyect
+php bin/console debug                                                           Cosas que puedes (routing/twig/confg)
 
-luego vamos a crear nuestro bundle por medio de la consola
-php app/console generate:bundle
 
-Esto nos pedida varios datos
-1.namespace 
-    Debemos poner la direccion del bundler desde la carpeta src "MyProyect/MyBundle"
-2.Nombre identificado del bundle
-    Aceptamos lo recomendado "MyProyectNombreBundle"
-3.Direccion del bundle
-    Aceptamos lo recomendado src/
-4.Formato de config del bundle
-    Propone "annotations" pero cambios a "yml" (guardado en src/MyProyect/MyBundle/Resources/config/routing.yml)
-5.Pregunta si genera estructura completa
-    Le decimos que no
-6.Si todo esta vine confirmamos
-7.Registrar bundle en app/AppKernel.php?
-    Le decimos que si
-8.Actualizar el app/config/routing.yml 
-    Le decimos que si
 #####################################################################################################
-CREACION DE ENTITY
+CREACION DE BUNDLE
+http://symfony.com/doc/current/book/bundles.html
+https://librosweb.es/libro/symfony_2_x/capitulo_4/el_sistema_de_bundles.html
 -----------------------------------------------------------------------------------------------------
-php app/console generate:doctrine:entity 
-The Entity shortcut name: ASPHUTestBundle:Auditorias
-Identidicador del bundle:Nombre Entidad
+php app/console generate:bundle                                                 Creacion del Bundle
+    Are you planning on sharing this bundle across multiple applications? [no]: Usar en bundle en otra app
+    Bundle name: BackEndBundle                                                  Nombre del bundle
+    Target Directory [src/]: src/                                               Ubicacion
+    Configuration format (annotation, yml, xml, php) [annotation]:              Formato para ruteo
 
+Se crean los siguientes archivos
+    src\MyNewBundle                                                             Carpeta contenedora
+    src\MyNewBundle\Controller\DefaulController.php                             Carpeta y ejemplo de controller
+    src\MyNewBundle\Entity                                                      Carpeta para entidades
+    src\MyNewBundle\Repository                                                  Carpeta para repo de entidades
+    src\MyNewBundle\Resources                                                   Carpeta de recursos
+        src\MyNewBundle\Resources\config                                        Configuraciones routing/services
+        src\MyNewBundle\views\Default                                           Carpeta para poner vistas
+    src\MyNewBundle\Test                                                        Carpeta para pruebas
+    src\MyNewBundle\MyNewBundle.php                                             Archivo llamado del AppKernel.php
+Se Edita los siguientes archivos
+    app\AppKernel.php                                                           Al final del 1er array
+    app\config\rounting.yml                                                     Confir para encontrar ruteos del bundle
+    
+
+    
+#####################################################################################################
+DOCTRINE
+http://www.doctrine-project.org/
+https://librosweb.es/libro/symfony_2_x/capitulo_8.html
+-----------------------------------------------------------------------------------------------------
+CREACION ENTIDAD
+--------------------------
+php bin/console doctrine:generate:entities                                      Creacion de entidad
+    The Entity shortcut name: AppBundle:MyEntidad                               NameSpace de la entidad
+    Configuration format (yml, xml, php, or annotation) [annotation]:           Como se va a definir
+    New field name (press return to stop adding fields):                        Nombre del campo
+    Field type [string]:                                                        Tipo de campo
+    Field length [255]:                                                         Largo
+    Is nullable [false]:                                                        Puede ser nulo
+    Unique [false]:                                                             Valor unico
+    
+Esto crea dos archivos sobre:
+    Src\AppBundle\Entity\MyEntidad.php: Contiene mapeo de la tabla y metodos SET/GET
+    Src\AppBundle\Repository\MyEntidadRepository.php: Puedes preparar los propios metodos 
+
+
+**Atajo rapido.
+php app/console doctrine:generate:entity
+      --entity="AppBundle:MyEntidad"
+      --fields="name:string(255)"
+
+      
+INTERESANTES
+--------------------------
+php app/console doctrine:database:drop --force                                  Borrar DB
+php app/console doctrine:database:create                                        Crear DB
+
+php app/console doctrine:schema:update --force                                  Crear/Actualizar esquema
+
+
+*** TENER EN CUENTA ****
+Para que las bases siembre se creen como UTF8 agrear las siguientes lineas
+en el archivo 
+my.ini apacha
+    collation-server = utf8_general_ci
+    character-set-server = utf8
 
 #####################################################################################################
 CREACION DE PAGINAS

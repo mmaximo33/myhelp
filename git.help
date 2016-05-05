@@ -122,7 +122,10 @@ git filter-branch --env-filter 'GIT_COMMITTER_DATE=$GIT_AUTHOR_DATE; export GIT_
 http://www.bluemangolearning.com/blog/2009/03/recovering-from-a-disastrous-git-rebase-mistake/
 
 
-
+//FORZAR PULL
+git fetch --all
+git reset --hard origin/master
+git pull origin master
 
 
 
